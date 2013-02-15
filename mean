@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+
+if(@ARGV<2){print "usage: $0 <tab delimited plain text without header> <col>\n"; exit;}
+
+$col=$ARGV[1]-1;
+open IN, $ARGV[0];
+while(<IN>) {
+chomp; split(/\t/);
+$sum+=$_[$col];
+$n++;
+ }
+print $sum/$n,"\n";

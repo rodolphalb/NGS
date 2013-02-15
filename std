@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+
+if(@ARGV<2){print "usage: $0 <tab delimited plain text without header> <col>\n"; exit;}
+
+$col=$ARGV[1]-1;
+open IN, $ARGV[0];
+while(<IN>) {
+chomp; split(/\t/);
+push @array,$_[$col];
+}
+print &std(@array),"\n";
+
+sub std {
+my(@numbers) = @_;
+return undef unless(scalar(@numbers));
+my $total1 = 0;
+foreach my $num (@numbers) {
+$total1 += $num;}
+my $mean1 = $total1 / (scalar @numbers);
+my $total2 = 0;
+foreach my $num (@numbers) {
+$total2 += ($mean1-$num)**2;}
+my $mean2 = $total2 / (scalar @numbers);
+my $std_dev = sqrt($mean2);
+return $std_dev;
+}
